@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Empleado</title>
+    <script>
+
+        class CalculadoraSalario {//SRP-ISP
+            calcularSalario(empleado) {
+                throw new Error("El método calcularSalario debe ser implementado");
+            }
+        }
+
+        // Interfaz para la generación de reportes
+        class GeneradorReportes {//SRP-ISP
+            generarReporte(empleado) {
+                throw new Error("El método generarReporte debe ser implementado");
+            }
+        }
+
+        // Clase base Empleado que puede ser extendida
+        class Empleado {//OCP
+            constructor(nombre, edad) {
+                this.nombre = nombre;
+                this.edad = edad;
+            }
+
+            // Métodos comunes
+            obtenerNombre() {
+                return this.nombre;
+            }
+
+            obtenerEdad() {
+                return this.edad;
+            }
+        }
+
+        class EmpleadoTiempoCompleto extends Empleado {//LSP
+            constructor(nombre, edad, salarioMensual) {
+                super(nombre, edad);
+                this.salarioMensual = salarioMensual;
+            }
+
+            obtenerSalarioMensual() {
+                return this.salarioMensual;
+            }
+        }
+
+        class EmpleadoMedioTiempo extends Empleado {//LSP
+            constructor(nombre, edad, salarioPorHora, horasTrabajadas) {
+                super(nombre, edad);
+                this.salarioPorHora = salarioPorHora;
+                this.horasTrabajadas = horasTrabajadas;
+            }
+
+            obtenerSalarioPorHora() {
+                return this.salarioPorHora;
+            }
+
+            obtenerHorasTrabajadas() {
+                return this.horasTrabajadas;
+            }
+        }
+
+        class CalculadoraSalarioTiempoCompleto extends CalculadoraSalario {
+            calcularSalario(empleado) {
+                return empleado.obtenerSalarioMensual();
+            }
+        }
+
+        class CalculadoraSalarioMedioTiempo extends CalculadoraSalario {
+            calcularSalario(empleado) {
+                return empleado.obtenerSalarioPorHora() * empleado.obtenerHorasTrabajadas();
+            }
+        }
+
+        class GeneradorReporteSimple extends GeneradorReportes {
+            generarReporte(empleado) {
+                return `Reporte de ${empleado.obtenerNombre()} (${empleado.obtenerEdad()} años)`;
+            }
+        }
+
+        class ServicioEmpleados {//DIP
+            constructor(calculadoraSalario, generadorReportes) {
+                this.calculadoraSalario = calculadoraSalario;
+                this.generadorReportes = generadorReportes;
+            }
+
+            obtenerSalario(empleado) {
+                return this.calculadoraSalario.calcularSalario(empleado);
+            }
+
+            generarReporte(empleado) {
+                return this.generadorReportes.generarReporte(empleado);
+            }
+        }
+        const empleadoTiempoCompleto = new EmpleadoTiempoCompleto("Diana Rodriguez", 24, 4000);
+        const empleadoMedioTiempo = new EmpleadoMedioTiempo("John Leon", 32, 200, 70);
+
+        const calculadoraSalarioTiempoCompleto = new CalculadoraSalarioTiempoCompleto();
+        const calculadoraSalarioMedioTiempo = new CalculadoraSalarioMedioTiempo();
+        const generadorReporteSimple = new GeneradorReporteSimple();
+
+        const servicioTiempoCompleto = new ServicioEmpleados(calculadoraSalarioTiempoCompleto, generadorReporteSimple);
+        const servicioMedioTiempo = new ServicioEmpleados(calculadoraSalarioMedioTiempo, generadorReporteSimple);
+
+        console.log(servicioTiempoCompleto.obtenerSalario(empleadoTiempoCompleto)); // Output: 4000
+        console.log(servicioMedioTiempo.obtenerSalario(empleadoMedioTiempo)); // Output: 1600 (200 * 70)
+
+        console.log(servicioTiempoCompleto.generarReporte(empleadoTiempoCompleto)); // Output: Reporte de Diana Rodriguez (24 años)
+        console.log(servicioMedioTiempo.generarReporte(empleadoMedioTiempo)); // Output: Reporte de John Leon (32 años)
+
+
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

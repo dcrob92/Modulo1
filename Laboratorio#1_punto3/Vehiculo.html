@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vehiculo</title>
+    <script>
+        class Vehículo {
+            constructor(marca, modelo, año) {
+                this.marca = marca;
+                this.modelo = modelo;
+                this.año = año;
+            }
+
+            detalles() {
+                return `Marca: ${this.marca}, Modelo: ${this.modelo}, Año: ${this.año}`;
+            }
+        }
+
+        // Ejemplo de uso
+        const vehículo1 = new Vehículo("Toyota", "Corolla", 2020);
+        const vehículo2 = new Vehículo("Honda", "Civic", 2018);
+
+        console.log(vehículo1.detalles());  // Output: Marca: Toyota, Modelo: Corolla, Año: 2020
+        console.log(vehículo2.detalles());  // Output: Marca: Honda, Modelo: Civic, Año: 2018
+    </script>
+</head>
+
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalles del Vehículo</title>
+    <script>
+        class Vehículo {
+            constructor(marca, modelo, año) {
+                this.marca = marca;
+                this.modelo = modelo;
+                this.año = año;
+            }
+
+            detalles() {
+                return `Marca: ${this.marca}, Modelo: ${this.modelo}, Año: ${this.año}`;
+            }
+        }
+
+        function mostrarDetallesVehículos() {
+            const vehículo1 = new Vehículo("Toyota", "Corolla", 2020);
+            const vehículo2 = new Vehículo("Honda", "Civic", 2018);
+
+            document.getElementById("detallesVehículo1").innerText = vehículo1.detalles();
+            document.getElementById("detallesVehículo2").innerText = vehículo2.detalles();
+        }
+    </script>
+</head>
+<body>
+    <h1>Detalles del Vehículo</h1>
+    <button onclick="mostrarDetallesVehículos()">Mostrar Detalles de los Vehículos</button>
+    <p id="detallesVehículo1"></p>
+    <p id="detallesVehículo2"></p>
+</body>
+</html>

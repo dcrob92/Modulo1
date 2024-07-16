@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio Persona</title>
+    <script>
+        class Persona {
+            constructor(nombre, edad) {
+                this.nombre = nombre;
+                this.edad = edad;
+            }
+
+            presentarse() {
+                console.log(`Hola, mi nombre es ${this.nombre} y tengo ${this.edad} años.`);
+            }
+        }
+
+        // Ejemplo de uso
+        const persona = new Persona("Diana", 24);
+        persona.presentarse();  // Output: Hola, mi nombre es Diana y tengo 24 años.
+    </script>
+</head>
+</html>

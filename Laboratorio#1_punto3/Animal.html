@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IMPLEMENTACION DE LA CLASE ANIMAL</title>
+
+    <script>
+        class Animal {//Definida como una clase abstracta con un constructor que inicializa nombre y edad.
+
+            constructor(nombre, edad) {
+                this.nombre = nombre;
+                this.edad = edad;
+            }
+
+            hablar() {//El método hablar es abstracto y lanza un error si no se implementa.
+                throw new Error("El método abstracto 'hablar' debe ser implementado");
+            }
+
+            moverse() {
+                throw new Error("El método abstracto 'moverse' debe ser implementado");
+            }
+        }
+
+        class Perro extends Animal {//Hereda de Animal y llama al constructor de la clase base.
+            constructor(nombre, edad) {
+                super(nombre, edad);
+            }
+
+            hablar() {// Implementa el método hablar que retorna "Guau".
+                return "Guau";
+            }
+
+            moverse() {
+                return "El perro está corriendo";
+            }
+        }
+
+        class Gato extends Animal {//Hereda de Animal y llama al constructor de la clase base.
+            constructor(nombre, edad) {
+                super(nombre, edad);
+            }
+
+            hablar() {//Implementa el método hablar que retorna "Miau".
+                return "Miau";
+            }
+
+            moverse() {
+                return "El gato está caminando sigilosamente";
+            }
+        }
+
+        function mostrarResultado() {//Crea instancias de Perro y Gato.
+            const perro = new Perro("Princesa", 7);
+            const gato = new Gato("Bella", 6);
+            //Actualiza el contenido de los elementos HTML con los resultados de las llamadas al método hablar de cada instancia.
+            document.getElementById("resultadoPerro").innerText = `${perro.nombre} dice: ${perro.hablar()} y ${perro.moverse()}`;
+            document.getElementById("resultadoGato").innerText = `${gato.nombre} dice: ${gato.hablar()}  y ${gato.moverse()}`;
+        }
+    </script>
+</head>
+
+<body>
+    <h1>Primer ejercicio Laboratorio 1</h1>
+    <!--botón que llama a la función mostrarResultado para mostrar el contenido de los párrafos con los resultados.-->
+    <button onclick="mostrarResultado()">Mostrar Resultados</button>
+    <p id="resultadoPerro"></p>
+    <p id="resultadoGato"></p>
+</body>
+
+</html>

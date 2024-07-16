@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Singleton</title>
+    <script>
+        class Configuracion {
+    constructor() {
+        if (Configuracion.instance) {
+            return Configuracion.instance;
+        }
+
+        this.config = {};
+        Configuracion.instance = this;
+
+        // Devuelve la instancia ya creada
+        return this;
+    }
+
+    set(key, value) {
+        this.config[key] = value;
+    }
+
+    get(key) {
+        return this.config[key];
+    }
+}
+
+// Ejemplo de uso del Singleton Configuracion
+
+const configuracion1 = new Configuracion();
+configuracion1.set('apiUrl', 'https://api.example.com');
+configuracion1.set('tiempoEspera', 5000);
+
+const configuracion2 = new Configuracion();
+console.log(configuracion2.get('apiUrl')); // https://api.example.com
+console.log(configuracion2.get('tiempoEspera')); // 5000
+
+console.log(configuracion1 === configuracion2); // true
+
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

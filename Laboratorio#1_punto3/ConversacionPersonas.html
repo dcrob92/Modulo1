@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Conversación entre Personas</title>
+    <script>
+        class Persona {
+            constructor(nombre, edad) {
+                this.nombre = nombre;
+                this.edad = edad;
+            }
+
+            presentarse() {
+                console.log(`Hola, mi nombre es ${this.nombre} y tengo ${this.edad} años.`);
+            }
+
+            conversar(otraPersona) {
+                console.log(`${this.nombre}: Hola ${otraPersona.nombre}, ¿cómo estás?`);
+                console.log(`${otraPersona.nombre}: Hola ${this.nombre}, estoy bien. ¿Y tú?`);
+            }
+        }
+
+        function iniciarConversacion() {
+            const nombre1 = document.getElementById("nombre1").value;
+            const edad1 = document.getElementById("edad1").value;
+            const nombre2 = document.getElementById("nombre2").value;
+            const edad2 = document.getElementById("edad2").value;
+
+            const persona1 = new Persona(nombre1, edad1);
+            const persona2 = new Persona(nombre2, edad2);
+
+            persona1.presentarse();
+            persona2.presentarse();
+            persona1.conversar(persona2);
+        }
+    </script>
+</head>
+<body>
+    <h1>Conversación entre Personas</h1>
+    <div>
+        <h2>Persona 1</h2>
+        <label for="nombre1">Nombre:</label>
+        <input type="text" id="nombre1" name="nombre1">
+        <br>
+        <label for="edad1">Edad:</label>
+        <input type="number" id="edad1" name="edad1">
+    </div>
+    <div>
+        <h2>Persona 2</h2>
+        <label for="nombre2">Nombre:</label>
+        <input type="text" id="nombre2" name="nombre2">
+        <br>
+        <label for="edad2">Edad:</label>
+        <input type="number" id="edad2" name="edad2">
+    </div>
+    <br>
+    <button onclick="iniciarConversacion()">Iniciar Conversación</button>
+</body>
+</html>
